@@ -7,8 +7,10 @@
     android:layout_height="match_parent"
     tools:context="com.example.pmorg.notepadpractice.ReadNoteActivity">
 
+
     <EditText
         android:id="@+id/title_text"
+
         android:textColor="@android:color/black"
         android:textSize="32dp"
         android:layout_width="match_parent"
