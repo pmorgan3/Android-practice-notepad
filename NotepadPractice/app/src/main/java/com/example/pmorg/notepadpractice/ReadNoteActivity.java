@@ -12,7 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 import static com.example.pmorg.notepadpractice.MainActivity.noteNumber;
 import static com.example.pmorg.notepadpractice.MainActivity.notesList;
@@ -104,9 +106,36 @@ public class ReadNoteActivity extends AppCompatActivity {
             outputStream.write(body.getBytes());
             outputStream.close();
             Toast.makeText(getApplicationContext(),"Note saved", Toast.LENGTH_LONG).show();
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(getApplicationContext(),"There was an error somewhere", Toast.LENGTH_LONG).show();
+        } catch (FileNotFoundException F) {
+            F.printStackTrace();
+            Toast.makeText(getApplicationContext(),"There was a file not found exception", Toast.LENGTH_LONG).show();
+        } catch (IOException I) {
+            I.printStackTrace();
+            Toast.makeText(getApplicationContext(), "There was an IOException", Toast.LENGTH_LONG).show();
+        } catch (IllegalArgumentException Il) {
+           StringBuilder stringBuilder = new StringBuilder();
+            for(int i = 0; i < title.length(); i++)
+            {
+                if (title.charAt(i) == '/')
+                {
+                    stringBuilder.append('-');
+                }
+                else {
+                    stringBuilder.append(title.charAt(i));
+                }
+            }
+            title = stringBuilder.toString();
+            try {
+                outputStream = openFileOutput(title, Context.MODE_PRIVATE);
+                outputStream.write(body.getBytes());
+                outputStream.close();
+                Toast.makeText(getApplicationContext(), "Note saved", Toast.LENGTH_LONG).show();
+            } catch (Exception E) {
+                E.printStackTrace();
+                Toast.makeText(getApplicationContext(),"There was an illegal argument exception and your catch didn't work",
+                        Toast.LENGTH_LONG).show();
+            }
         }
+
     }
 }
