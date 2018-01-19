@@ -16,6 +16,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import es.dmoral.toasty.Toasty;
+
 import static com.example.pmorg.notepadpractice.MainActivity.noteNumber;
 import static com.example.pmorg.notepadpractice.MainActivity.notesList;
 import static com.example.pmorg.notepadpractice.MainActivity.oldFileTitle;
@@ -57,7 +59,8 @@ public class ReadNoteActivity extends AppCompatActivity {
                             //will disappear and nothing will happen.
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 deleteFile(oldFileTitle);
-                                Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_LONG).show();
+                                //Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_LONG).show();
+                                Toasty.success(getApplicationContext(), "Deleted", Toast.LENGTH_LONG).show();
                                 Intent myIntent = new Intent(ReadNoteActivity.this, MainActivity.class);
                                 startActivity(myIntent);
                             }})
@@ -88,7 +91,8 @@ public class ReadNoteActivity extends AppCompatActivity {
                     startActivity(goBackHome);
                 }
                 else {
-                    Toast.makeText(getApplicationContext(), "Enter a Title", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), "Enter a Title", Toast.LENGTH_LONG).show();
+                    Toasty.warning(getApplicationContext(), "Enter a Title", Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -98,6 +102,7 @@ public class ReadNoteActivity extends AppCompatActivity {
     //This saves the edited file. The old file will actually be deleted and this will save as a whole new file.
     public void saveEditedFile(String oldTitle, String title, String body)
     {
+
         deleteFile(oldTitle);
         File file = new File(getBaseContext().getFilesDir(), title);
         FileOutputStream outputStream;
@@ -105,13 +110,16 @@ public class ReadNoteActivity extends AppCompatActivity {
             outputStream = openFileOutput(title, Context.MODE_PRIVATE);
             outputStream.write(body.getBytes());
             outputStream.close();
-            Toast.makeText(getApplicationContext(),"Note saved", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(),"Note saved", Toast.LENGTH_LONG).show();
+            Toasty.success(getApplicationContext(),"Note saved", Toast.LENGTH_LONG).show();
         } catch (FileNotFoundException F) {
             F.printStackTrace();
-            Toast.makeText(getApplicationContext(),"There was a file not found exception", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(),"There was a file not found exception", Toast.LENGTH_LONG).show();
+            Toasty.error(getApplicationContext(), "There was a file not found exception", Toast.LENGTH_LONG).show();
         } catch (IOException I) {
             I.printStackTrace();
-            Toast.makeText(getApplicationContext(), "There was an IOException", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), "There was an IOException", Toast.LENGTH_LONG).show();
+            Toasty.error(getApplicationContext(),"There was an IOException", Toast.LENGTH_LONG).show();
         } catch (IllegalArgumentException Il) {
            StringBuilder stringBuilder = new StringBuilder();
             for(int i = 0; i < title.length(); i++)
@@ -129,10 +137,13 @@ public class ReadNoteActivity extends AppCompatActivity {
                 outputStream = openFileOutput(title, Context.MODE_PRIVATE);
                 outputStream.write(body.getBytes());
                 outputStream.close();
-                Toast.makeText(getApplicationContext(), "Note saved", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "Note saved", Toast.LENGTH_SHORT).show();
+                Toasty.success(getApplicationContext(),"Note saved", Toast.LENGTH_LONG).show();
             } catch (Exception E) {
                 E.printStackTrace();
-                Toast.makeText(getApplicationContext(),"There was an illegal argument exception and your catch didn't work",
+                //Toast.makeText(getApplicationContext(),"There was an illegal argument exception and your catch didn't work",
+                 //       Toast.LENGTH_LONG).show();
+                Toasty.error(getApplicationContext(), "There was an illegal argument exception and your catch didn't work",
                         Toast.LENGTH_LONG).show();
             }
         }

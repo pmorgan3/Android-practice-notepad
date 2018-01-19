@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import es.dmoral.toasty.Toasty;
+
 import static com.example.pmorg.notepadpractice.MainActivity.notesList;
 
 /**
@@ -45,7 +47,8 @@ public class NoteEdit extends AppCompatActivity {
                 if(editTitle.getText().toString().equals("") || editTitle.getText().toString().equals(null))
                 {
                     //Tells the user to give the note a title
-                    Toast.makeText(getApplicationContext(), "Please give the note a title", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), "Please give the note a title", Toast.LENGTH_LONG).show();
+                    Toasty.error(getApplicationContext(), "Please give the note a title", Toast.LENGTH_LONG).show();
                 }
                 else {
                     //If the note already has a title then the file is saved, regardless if there's a body, and the Activity switches
@@ -78,13 +81,16 @@ public class NoteEdit extends AppCompatActivity {
             //outputStream = new FileOutputStream (new File(file.getAbsolutePath().toString()), true); // true will be same as Context.MODE_APPEND
             outputStream.write(fileBody.getBytes());
             outputStream.close();
-            Toast.makeText(getApplicationContext(),"Note saved", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(),"Note saved", Toast.LENGTH_LONG).show();
+            Toasty.success(getApplicationContext(), "Note saved", Toast.LENGTH_SHORT).show();
         } catch (FileNotFoundException F) {
             F.printStackTrace();
-            Toast.makeText(getApplicationContext(),"There was a file not found exception", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(),"There was a file not found exception", Toast.LENGTH_LONG).show();
+            Toasty.error(getApplicationContext(), "There was a file not found exception", Toast.LENGTH_LONG).show();
         } catch (IOException I) {
             I.printStackTrace();
-            Toast.makeText(getApplicationContext(), "There was an IOException", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), "There was an IOException", Toast.LENGTH_LONG).show();
+            Toasty.error(getApplicationContext(), "There was an IOException", Toast.LENGTH_LONG).show();
         } catch (IllegalArgumentException Il) {
             StringBuilder stringBuilder = new StringBuilder();
             for(int i = 0; i < fileTitle.length(); i++)
@@ -103,10 +109,13 @@ public class NoteEdit extends AppCompatActivity {
                 //outputStream = new FileOutputStream (new File(file.getAbsolutePath().toString()), true); // true will be same as Context.MODE_APPEND
                 outputStream.write(fileBody.getBytes());
                 outputStream.close();
-                Toast.makeText(getApplicationContext(), "Note saved", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "Note saved", Toast.LENGTH_SHORT).show();
+                Toasty.success(getApplicationContext(), "Note saved", Toast.LENGTH_SHORT).show();
             } catch (Exception E) {
                 E.printStackTrace();
-                Toast.makeText(getApplicationContext(),"There was an illegal argument exception and your catch didn't work",
+                //Toast.makeText(getApplicationContext(),"There was an illegal argument exception and your catch didn't work",
+                 //       Toast.LENGTH_LONG).show();
+                Toasty.error(getApplicationContext(), "There was an illegal argument exception and your catch didn't work",
                         Toast.LENGTH_LONG).show();
             }
         }

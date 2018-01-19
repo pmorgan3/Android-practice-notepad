@@ -2,8 +2,11 @@ package com.example.pmorg.notepadpractice;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.ColorInt;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +34,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+
 /**
  * This is the "home screen" activity of the app, so to speak.
  * This uses a ListView to show a list of notes that the user has created.
@@ -41,6 +46,12 @@ import java.util.List;
  *
  * Later on I want to convert this entire thing to Kotlin.
  *
+ * Next on the todo list: add a button to change the way your list is sorted.
+ * How to do this: Literally just implement different sorting methods. By default though it will sort
+ *                                                          by last modified.
+ *
+ *
+ *
  * Created by Paul Morgan III on 1/6/2018
  */
 public class MainActivity extends AppCompatActivity {
@@ -49,6 +60,11 @@ public class MainActivity extends AppCompatActivity {
      *
      * Bad practice? Probably.
      */
+
+    public static boolean isSortedByNewest;
+    public static boolean isSortedByOldest;
+    public static boolean isSortedAlphabetically;
+    public static boolean isSortedReverseAlphabetically;
     public static int noteNumber;
     public static ArrayList<Notes> notesList = new ArrayList<>();
     public static ArrayList<String> titleList = new ArrayList<>();
@@ -129,6 +145,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public static void sortByFirstModified()
+    {
+        /**
+         * Low key don't know if how i'm supposed to make sure the app doesn't switch back to
+         * sorting by first modified everytime it goes back to this activity and everytime the
+         * loadFiles() method is called.
+         *
+         * Hmmmmmm,
+         *
+         * \
+         */
+
+
+    }
+
+
     /**
      * Allows saved notes to be loaded into the ListView.
      */
@@ -172,7 +204,8 @@ public class MainActivity extends AppCompatActivity {
                 content = buf.toString();
             }
         } catch (java.io.FileNotFoundException e) {} catch (Throwable t) {
-            Toast.makeText(this, "Exception: " + t.toString(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "Exception: " + t.toString(), Toast.LENGTH_LONG).show();
+            Toasty.error(this, "Exception: " + t.toString(), Toast.LENGTH_LONG).show();
         }
 
         return content;
