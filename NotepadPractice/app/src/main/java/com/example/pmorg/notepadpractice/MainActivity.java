@@ -48,21 +48,24 @@ import es.dmoral.toasty.Toasty;
  *
  * There's probably A TON of bad practices in this project that I don't know about since I'm new
  *
- * The end goal of this app is to keep updating it so I can learn more about Android development in the process
+ * The end goal of this app is to keep updating it so I can learn more about Android development
+ * in the process
  *
  * Later on I want to convert this entire thing to Kotlin.
  *
  * Next on the todo list: add a button to change the way your list is sorted.
- * How to do this: Literally just implement different sorting methods. By default though it will sort
- *                                                          by last modified.
+ * How to do this: Literally just implement different sorting methods. By default though
+ * it will sort by last modified.
  *
  *
  *
  * Created by Paul Morgan III on 1/6/2018
  */
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
     /**
-     * I made all these variable static because I wanted to use them throughout the project in each activity.
+     * I made all these variable static because I wanted to use them throughout the project
+     * in each activity.
      *
      * Bad practice? Probably.
      *
@@ -99,10 +102,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                //This will hold the number of the position of the selected note in the notesList array.
+                //This will hold the number of the position of the selected note in the
+                // notesList array.
                 noteNumber = position;
 
-                Intent goToNoteIntent = new Intent(MainActivity.this, ReadNoteActivity.class);
+                Intent goToNoteIntent = new Intent(MainActivity.this,
+                        ReadNoteActivity.class);
 
                 oldFileTitle = notesList.get(noteNumber).getTitle();
                 startActivity(goToNoteIntent);
@@ -118,7 +123,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent myIntent = new Intent(MainActivity.this, NoteEdit.class);
                 startActivity(myIntent);
                 //The toast makes sure that the button was pressed
-                //Toast.makeText(MainActivity.this,"The button was at least pressed", Toast.LENGTH_LONG).show();
+                //Toast.makeText(MainActivity.this,"The button was at least pressed",
+                // Toast.LENGTH_LONG).show();
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                   //      .setAction("Action", null).show();
             }
@@ -131,7 +137,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -271,7 +278,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
             catch (NullPointerException e)
             {
-                Toasty.error(this, "There was a NullPointerException one of your files is MISSING!!!", Toast.LENGTH_LONG).show();
+                Toasty.error(this,
+                        "There was a NullPointerException one of your files is MISSING!!!",
+                        Toast.LENGTH_LONG)
+                        .show();
             }
         }
 
@@ -300,7 +310,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         } catch (java.io.FileNotFoundException e) {} catch (Throwable t) {
             //Toast.makeText(this, "Exception: " + t.toString(), Toast.LENGTH_LONG).show();
-            Toasty.error(this, "Exception: " + t.toString(), Toast.LENGTH_LONG).show();
+            Toasty.error(this, "Exception: " + t.toString(),
+                    Toast.LENGTH_LONG)
+                    .show();
         }
 
         return content;
