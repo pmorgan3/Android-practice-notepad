@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+    </group>
+
+    <item android:title="Sort">
+        <menu>
+            <item
+                android:id="@+id/menu_alphabetical"
+
+                android:title="Alphabetical" />
+            <item
+                android:id="@+id/menu_reverse_alphabetical"
+
+                android:title="Reverse Alphabetical" />
+            <item
+                android:id="@+id/menu_newest"
+                android:title="Newest"/>
+            <item
+                android:title="Oldest"
+                android:id="@+id/menu_oldest"
+                />
+        </menu>
+    </item>
+
+</menu>

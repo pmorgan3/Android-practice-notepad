@@ -5,14 +5,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/"
     android:layout_width="match_parent"
+    android:id="@+id/drawer_layout"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.pmorg.notepadpractice.MainActivity"
     tools:showIn="@layout/activity_main">
+    
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"></android.support.v7.widget.Toolbar>
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/add_button"
             android:layout_width="wrap_content"
@@ -31,10 +36,6 @@
             />
     </RelativeLayout>
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"></android.support.v7.widget.Toolbar>
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"

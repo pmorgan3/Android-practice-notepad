@@ -1,33 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+
+<android.support.design.widget.CoordinatorLayout
 xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/"
+xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-app:layout_behavior="@string/appbar_scrolling_view_behavior"
-tools:context="com.example.pmorg.notepadpractice.MainActivity"
-tools:showIn="@layout/activity_main">
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/add_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="20dp"
-        android:clickable="true"
-        android:src="@drawable/ic_add_white_36dp" />
+tools:context="com.example.pmorg.notepadpractice.MainActivity">
 
 
-    <ListView
+<include layout="@layout/activity_main"/>
 
 
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/note_list_view"
-
-        />
-
-
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

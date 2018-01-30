@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".NoteEdit" />
-        <activity android:name=".ReadNoteActivity"></activity>
+        <activity android:name=".ReadNoteActivity" />
     </application>
 
 </manifest>
